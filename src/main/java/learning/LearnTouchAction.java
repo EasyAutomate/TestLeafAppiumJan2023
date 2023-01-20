@@ -11,7 +11,7 @@ import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.touch.WaitOptions;
 import io.appium.java_client.touch.offset.PointOption;
 
-public class LearnTouchActionInAndroid {
+public class LearnTouchAction {
 	public static void main(String[] args) throws MalformedURLException, InterruptedException {
 		DesiredCapabilities dc = new DesiredCapabilities();
 		dc.setCapability("appium:app", System.getProperty("user.dir") + "/apks/MultiTouch Tester_v1.2.apk");
