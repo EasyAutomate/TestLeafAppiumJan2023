@@ -7,22 +7,24 @@ Challenges
 5. Socket Hangup error is thrown if any of the port is not responding 
 	1. Close the app by code everytime
 	2. Wait for 60 sec (based on newCommandTimeout capability)
-	3. Delete the apps in Mobile
-	4. Kill the appium server and adb and then start again
+	3. Delete the apps in Mobile (AUT, Appium Settings, UiAutomator Server, UiAutomator Client)
+	4. Kill the appium server and ADB and then start again
 6. App could not be installed in device due to below factors
 	1. Admin permission for Appium and ADB
 	2. If custom OS is installed, we need to enable setting in USB debugging
 7. When VDM is modified in code, Appium Server should be restarted and Server, Client, Bootstrap.jar installed in device should be uninstalled
-8. If the screenshot is disabled in App, Appium will not be able to identify the locators. We need to ask Dev team to provide a build to identify the locators.
+8. If the screenshot is disabled in App, Appium will not be able to identify the locators.
+    Option 1: We need to ask Dev team to provide a debug build to identify the locators.
+    Option 2: Print driver.getPageSource() contents in console. Identify the element manually and try in code. (Time consuming)
 9. If app is obfuscated then we might have challenges in identifying the locators. We might need to use XPATH for all the places eventhought id/name is provided by the dev team
 10. In case if we have added only "app" as part of desired caps, while trying to launch the app we may end up with error stating "Not a launchable activity"/"app permission denied". --> In that case add appPackage and appActivty along with the existing desired capabilities.
-11. During swipe, check if the starting co-ordinates are not overlapping with any other element
+11. During swipe, check if the starting co-ordinates are not overlapping with any other element. PointerInput, TouchAction will not throw any error on failure
 12. In case, if swipe is not working try to print the co-ordinates, validate the same in Appium inspector
 13. Toast/Capacha/Graph cannot be automated (Similar challenges of Selenium)
 14. While trying to launch with appPackage and appActivity we may end with Penmission denial error (org.openqa.selenium.SessionNotCreatedException) --> Use application Info.apk and find the right activity which has permission
-15. Failure for TouchAction, MultiTouchAction
+15. Failure for TouchAction, MultiTouchAction (more than 50% failure rates)
 16. In PointerInput for iOS, the button are being clicked when createPointerDown is called
-17. Scroll/swipe should be perform on element with scrollable att set as true
+17. Scroll/swipe should be perform on element with scrollable attribute set as true
 18. autoGrantPermissions will always search for a element with id as button2. If found then it will chick that element
 19. If object is created using AndroidDriver or IOSDriver then the platformName cap should not be provided in code
 20. If I switch the context the implicit wait duration is reset to 0
@@ -47,6 +49,7 @@ Challenges
 39. For WebView in both platform, I cannot use cloud providers
 40. If noReset is set as true, then the app will not kill and restart for every session in iOS. Solution is to terminate and relaunch everytime
 41. In iOS, we need to use keyboard operation as NATIVE view only
+42. If the name of the finger is similar in PointerInput object creation, then multiple finger will not work
 
 
 	
