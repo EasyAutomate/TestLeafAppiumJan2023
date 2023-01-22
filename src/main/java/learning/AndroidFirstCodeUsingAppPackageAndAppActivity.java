@@ -8,9 +8,11 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
 import io.appium.java_client.AppiumDriver;
+import org.testng.annotations.Test;
 
 public class AndroidFirstCodeUsingAppPackageAndAppActivity {
-	public static void main(String[] args) throws MalformedURLException {
+	@Test
+	public void runCode() throws MalformedURLException {
 		DesiredCapabilities dc = new DesiredCapabilities();
 		dc.setCapability("platformName", "Android");
 		dc.setCapability("appium:deviceName", "my device");
@@ -21,6 +23,6 @@ public class AndroidFirstCodeUsingAppPackageAndAppActivity {
 		driver.findElement(By.className("android.widget.EditText")).sendKeys("rajkumar@testleaf.com");
 		driver.findElement(By.xpath("(//android.widget.EditText)[2]")).sendKeys("Leaf@123");
 		driver.findElement(By.className("android.widget.Button")).click();
-		driver.quit();
+		//driver.quit();
 	}
 }

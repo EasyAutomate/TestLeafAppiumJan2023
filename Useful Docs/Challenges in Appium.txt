@@ -25,7 +25,7 @@ Challenges
 15. Failure for TouchAction, MultiTouchAction (more than 50% failure rates)
 16. In PointerInput for iOS, the button are being clicked when createPointerDown is called
 17. Scroll/swipe should be perform on element with scrollable attribute set as true
-18. autoGrantPermissions will always search for a element with id as button2. If found then it will chick that element
+18. autoGrantPermissions will always search for a element with id as button2. If found then it will click that element
 19. If object is created using AndroidDriver or IOSDriver then the platformName cap should not be provided in code
 20. If I switch the context the implicit wait duration is reset to 0
 21. isKeyboardShown will return false if the on screen keyboard is a numeric keyboard
