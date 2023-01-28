@@ -1,0 +1,89 @@
+Cucumber
+
+1. Current requirement are clear
+2. Feature / TC is provided by BA/PM/PO
+
+
+Manual
+Test suite
+	Requirements/Scenarios
+		Test cases
+			Test steps
+
+TestNG
+Suite
+	Test
+		Class
+			Method
+
+Cucumber
+Project
+	Feature
+		Scenario
+			Step
+
+Cucumber Keywords
+Given - Pre condition
+When - Step defenition
+Then - Expected result
+And - To combine multiple statements of Given,When, Then, But
+But - Expected result - negative
+* - Wild card (Any)
+
+Cucumber workflow
+Project
+Features
+Steps
+Step def
+Automation library
+Runner
+
+
+Maven
+src/main/java
+wrapper
+	GenericWrappers.java
+pages
+	
+	CommonPage.java extends GenericWrappers
+	@Given("Mobile app is launched successfully")
+	public CommonPage launchApp() {
+	launchApp(....);
+	}
+	LoginPage.java extends GenericWrappers
+	public LoginPage(){
+	verifyEleIsDisplayed(element);
+	}
+	@Given("I enter the username as {string}")
+	public LoginPage enterUserName(String data) {
+	WebElement element = getWebElement(...);
+	enterValue(element,data);
+	return this;
+	}
+
+	@Given (I enter the password as {string}")
+	public LoginPage enterPass(String pass){
+	WebElement element = getWebElement(...);
+	enterValue(element,pass);
+	return this;
+	}
+src/main/resources
+src/test/java
+	TestRunner.java extends AbstractTestNGCucumberTests
+	@CucumberOptions(features={"src/test/resources/features"},
+			glue = {"pages"}}
+	
+	
+src/test/resources
+features
+	Login.feature
+		Feature: Login funtionality
+		
+		Scenario: Login positive flow
+		Given Mobile app is launched successfully
+		When I enter the username as "fdsf"
+		And I enter the password as "sfssa"
+		And I click on the login button
+		Then Home page is displayed
+		
+		

@@ -1,0 +1,92 @@
+Page Object Model Framework
+
+Rules
+1. Each and every page should be a separate class
+2. Every page should inherit the common methods class
+3. Every page should have a constructor and verify the page contents
+4. Every action should be a separate method
+5. Every method should have a return type and return to the page it lands
+
+POM
+Maven
+src/main/java
+wrapper
+	GenericWrappers.java
+pages
+	LoginPage.java extends GenericWrappers
+	public LoginPage(){
+	verifyEleIsDisplayed(element);
+	}
+	
+	public LoginPage enterUserName(WebElement element,String data) {
+	enterValue(element,data);
+	return this;
+	}
+src/main/resources
+src/test/java
+testCases
+	TC001.java
+	public static void main(String[] args) {
+	LoginPage lp = new LoginPage();
+	lp.launchApp(............);
+	lp.enterUserName(lp.getWebElement(Locators.ID.asString(),"asd"),"Lokesh");
+	}
+src/test/resources
+
+
+POM + TestNG + PageFactory + Extent Reports
+Maven
+src/main/java
+wrapper
+	GenericWrappers.java extends Reporter
+	ProjectSpecificWrappers.java extends GenericWrappers
+	@BeforeSuite()
+	public void bs() {
+	initializeReports(............);
+	}
+	@BeforeMethod()
+	public void bm() {
+	launchApp(............);
+	initializeTestCase(.....);
+	}
+	@AfterMethod()
+	public void am() {
+	closeApp();
+	}
+	@AfterSuite()
+	public void as() {
+	saveReports(............);
+	}
+utils
+	Reporter.java
+	public void initializeReports(){......}
+	public void saveReports(){......}
+	public void initializeTestCase(){......}
+	public void logReports(){......}
+pages
+	LoginPage.java extends GenericWrappers
+	public LoginPage(AppiumDriver driver){
+	this.driver = driver;
+	PageFactory.initElements(new AppiumFieldDecorator(driver),this);
+	verifyEleIsDisplayed(userName);
+	}
+	
+	@AndroidFindBy(id = "abc")
+	@iOSFindBy(id = "sdc") --> Applicable only for automationName - XCTest
+	@iOSXCUITFindBy(id="dss") --> Applicable only for automationName - XCUITest
+	private WebElement userName;
+	public LoginPage enterUserName(String data) {
+	enterValue(userName,data);
+	logReports("PASS","Username "+ userName + " entered successfully");
+	return this;
+	}
+src/main/resources
+src/test/java
+testCases
+	TC001.java extends ProjectSpecificWrappers
+	@Test
+	public void runScript() {
+	new LoginPage(driver)
+	.enterUserName("Lokesh");
+	}
+src/test/resources
