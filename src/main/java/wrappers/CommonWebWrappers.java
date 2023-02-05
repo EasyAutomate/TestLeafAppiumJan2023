@@ -4,6 +4,7 @@ import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.ios.IOSDriver;
 import io.appium.java_client.remote.SupportsContextSwitching;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
 import java.net.MalformedURLException;
@@ -15,7 +16,7 @@ public class CommonWebWrappers extends CommonNativeWrappers {
 
     // To launch the mobile web browser
     public boolean launchBrowser(String platformName, String browserName, String deviceName, String URL, String udid,
-                                 String chromeDriverPort, String wdaLocalPort, String mjpegServerPort, String webkitDebugProxyPort) {
+                                 String chromeDriverPort, String wdaLocalPort, String mjpegServerPort, String webkitDebugProxyPort, String platformVersion) {
         try {
             DesiredCapabilities dc = new DesiredCapabilities();
             // To pass the Unique Device Identifier
@@ -37,19 +38,26 @@ public class CommonWebWrappers extends CommonNativeWrappers {
             dc.setCapability("deviceName", deviceName);
             // dc.setCapability("platformName", platformName);
             // Comment the below line based on need
-            dc.setCapability("noReset", true);
+            //dc.setCapability("noReset", true);
             if (platformName.equalsIgnoreCase("Android")) {
                 // Comment the below line based on need
                 dc.setCapability("autoGrantPermissions", true);
+                if (!platformVersion.equals("")) {
+                    dc.setCapability("platformVersion", platformVersion);
+                }
                 driver = new AndroidDriver(new URL("http://0.0.0.0:4723/wd/hub"), dc);
             } else if (platformName.equalsIgnoreCase("iOS")) {
-                if (!webkitDebugProxyPort.equals(""))
+                if (!webkitDebugProxyPort.equals("")) {
                     dc.setCapability("webkitDebugProxyPort", webkitDebugProxyPort);
+                }
                 // Comment the below line based on need
-                dc.setCapability("autoAcceptAlerts", true);
+//                dc.setCapability("autoAcceptAlerts", true);
                 dc.setCapability("startIWDP", true);
                 dc.setCapability("nativeWebTap", true);
                 dc.setCapability("automationName", "XCUITest");
+                if (!platformVersion.equals("")) {
+                    dc.setCapability("safari:platformVersion", platformVersion);
+                }
                 driver = new IOSDriver(new URL("http://0.0.0.0:4723/wd/hub"), dc);
             }
             driver.get(URL);
@@ -78,11 +86,17 @@ public class CommonWebWrappers extends CommonNativeWrappers {
     // To scroll down in browser
     public boolean scrollDownInBrowser(int pixelsToBeScrolled) {
         try {
-            JavascriptExecutor jse = (JavascriptExecutor) driver;
+            JavascriptExecutor jse = driver;
             jse.executeScript("window.scrollBy(0," + pixelsToBeScrolled + "\")", "");
         } catch (Exception e) {
             e.printStackTrace();
         }
+        return true;
+    }
+
+    public boolean clickUsingJSExecutor(WebElement element) {
+        JavascriptExecutor executor = (JavascriptExecutor) driver;
+        executor.executeScript("arguments[0].click();", element);
         return true;
     }
 

@@ -32,10 +32,10 @@ Challenges
 22. Appium can automate only visible portion of the screen
 23. activateApp method can fail if the appActivity in manifest doesnot have permission
 24. Phone should be connected via USB cable while perform Wi-Fi & Mobile Data on/off scenarios
-25. Physical keyboard actions like Keys.Enter will not be working in webview. In Android, native android keys layout is used
-26. GetContextHandles() will print the webview running in background as well
+25. Physical keyboard actions like "Keys.Enter" will not be working in Appium. In Android, native android keys layout should be used. In ioS, identify the element and click
+26. GetContextHandles() will print the webview running in background as well in Android
 27. Always try to switch to the right WEBVIEW since the GetContextHandles() returns Set<String>
-28. AppiumBy using Id and Name locators cannot be identified 
+28. AppiumBy using Id and Name locators cannot be identified in Webview
 29. Appium Inspector cannot click on overlapping element
 30. In older appium versions, switching between web app to native/hybrid app was not possible
 31. If session is created for Browser (Mobile Web), then we can switch to Native context only. WebView context will work only for Browser (Mobile Web)
@@ -50,6 +50,8 @@ Challenges
 40. If noReset is set as true, then the app will not kill and restart for every session in iOS. Solution is to terminate and relaunch everytime
 41. In iOS, we need to use keyboard operation as NATIVE view only
 42. If the name of the finger is similar in PointerInput object creation, then multiple finger will not work
+43. In Appium Versions the WebDriverAgent files are not updated to latest. We need to manually update from git.
+
 
 
 	

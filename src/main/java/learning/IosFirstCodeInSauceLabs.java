@@ -17,7 +17,7 @@ public class IosFirstCodeInSauceLabs extends GenericWrappers {
         MutableCapabilities caps = new MutableCapabilities();
         caps.setCapability("platformName", "iOS");
         caps.setCapability("appium:app", "storage:filename=UICatalog.zip"); // The filename of the mobile app
-        caps.setCapability("appium:deviceName", "iPhone 13 Simulator");
+        caps.setCapability("appium:deviceName", "iPhone Simulator");
         caps.setCapability("appium:platformVersion", "16.1");
         caps.setCapability("appium:automationName", "XCUITest");
         MutableCapabilities sauceOptions = new MutableCapabilities();
@@ -25,7 +25,7 @@ public class IosFirstCodeInSauceLabs extends GenericWrappers {
         sauceOptions.setCapability("build", "<your build id>");
         sauceOptions.setCapability("name", "<your test name>");
         caps.setCapability("sauce:options", sauceOptions);
-        URL url = new URL("https://oauth-lk8405950-7326e:fddeec9d-189f-439a-9970-89cf9a89d614@ondemand.eu-central-1.saucelabs.com:443/wd/hub");
+        URL url = new URL("https://added:77f7db86-80a2-499a-abec-bd3c257b708c@ondemand.us-west-1.saucelabs.com:443/wd/hub");
         IOSDriver driver = new IOSDriver(url, caps);
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
         driver.findElement(AppiumBy.accessibilityId("Action Sheets")).click();

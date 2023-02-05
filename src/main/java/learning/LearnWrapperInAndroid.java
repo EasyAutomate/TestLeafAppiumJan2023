@@ -1,6 +1,5 @@
 package learning;
 
-import io.appium.java_client.android.AndroidDriver;
 import wrappers.GenericWrappers;
 
 public class LearnWrapperInAndroid {
@@ -12,7 +11,7 @@ public class LearnWrapperInAndroid {
         gm.verifyAndInstallApp("com.testleaf.leaforg", System.getProperty("user.dir") + "/apks/leaforg.apk");
 //         To change orientation
         gm.setLandscapeOrientation();
-        System.out.println(gm.getOrientation());
+        //System.out.println(gm.getOrientation());
 
         gm.dataOffInAndroid();
         gm.dataOnInAndroid();

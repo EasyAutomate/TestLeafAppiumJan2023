@@ -4,13 +4,13 @@ import io.appium.java_client.remote.SupportsContextSwitching;
 
 public class IosWebWrappers extends IosNativeWrappers {
 
-    public boolean launchSafariBrowser(String deviceName, String URL, String udid) {
-        return launchBrowser("iOS", "Safari", deviceName, URL, udid, "", "", "", "");
+    public boolean launchSafariBrowser(String deviceName, String URL, String udid, String platformVersion) {
+        return launchBrowser("iOS", "Safari", deviceName, URL, udid, "", "", "", "", platformVersion);
     }
 
     public boolean launchSafariBrowserInParallel(String deviceName, String URL, String udid, String wdaLocalPort,
-                                                 String webkitDebugProxyPort) {
-        return launchBrowser("iOS", "Safari", deviceName, URL, udid, "", wdaLocalPort, "", webkitDebugProxyPort);
+                                                 String webkitDebugProxyPort, String platformVersion) {
+        return launchBrowser("iOS", "Safari", deviceName, URL, udid, "", wdaLocalPort, "", webkitDebugProxyPort, platformVersion);
     }
 
     public boolean deleteSafariCookies() {
@@ -43,7 +43,7 @@ public class IosWebWrappers extends IosNativeWrappers {
             switchNativeview();
         }
         if (isKeyboardShown()) {
-            click(getWebElement(Locators.NAME.toString(), name));
+            getWebElement(Locators.NAME.toString(), name).click();
         }
         if (!isNative) {
             switchContext(context);

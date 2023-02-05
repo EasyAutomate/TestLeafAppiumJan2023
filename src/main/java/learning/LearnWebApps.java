@@ -7,8 +7,8 @@ public class LearnWebApps extends GenericWrappers {
 
     @Test
     public void runCode() {
-       launchChromeBrowser("my device","https://www.google.com");
-       enterValue(getWebElement(Locators.NAME.asString(), "q"),"Lokesh");
-       pressEnter();
+        launchChromeBrowser("my device", "https://www.google.com");
+        enterValue(getWebElement(Locators.NAME.asString(), "q"), "Lokesh");
+        pressEnter();
     }
 }
